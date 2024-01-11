@@ -2,9 +2,10 @@ import {
   // PayloadAction,
   isAnyOf,
   createSlice,
+  PayloadAction,
 } from "@reduxjs/toolkit";
 import { getAllProducts } from "./operations";
-import { MainState } from "../types/interfaces";
+import { MainState, Product } from "../types/interfaces";
 
 const handleSameFulfilled = (state: MainState) => {
   state.isLoading = false;
@@ -16,6 +17,7 @@ const initialState = {
   error: null,
   data: {
     products: [],
+    filtredProducts: [],
   },
 } as MainState;
 
@@ -23,6 +25,9 @@ const mainSlice = createSlice({
   name: "main",
   initialState,
   reducers: {
+    setFiltredProducts: (state, action: PayloadAction<Product[]>) => {
+      state.data.filtredProducts = action.payload;
+    },
     resetError: (state) => {
       state.error = null;
     },
@@ -57,5 +62,5 @@ const mainSlice = createSlice({
   },
 });
 
-export const { resetError } = mainSlice.actions;
+export const { setFiltredProducts, resetError } = mainSlice.actions;
 export const mainReducer = mainSlice.reducer;

@@ -5,8 +5,8 @@ export const FooterSection = styled.footer`
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 40px;
-  height: 40px;
+  padding: 0 24px;
+  height: 60px;
 
   background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};

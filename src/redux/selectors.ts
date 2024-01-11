@@ -1,4 +1,4 @@
-import { RootState } from "./store";
+import { RootState } from "./hooks";
 
 export const selectData = (state: RootState) => state.main.data;
 export const selectError = (state: RootState) => state.main.error;
