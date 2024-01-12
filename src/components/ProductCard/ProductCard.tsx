@@ -3,7 +3,6 @@ import { Product } from "../../types/interfaces";
 import { Card, Image, Category } from "./ProductCard.styled";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-// import { useTheme } from "@emotion/react";
 
 interface ProductCardProps {
   product: Product;
@@ -11,7 +10,6 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { title, image, category, price } = product;
-  // const theme = useTheme();
 
   return (
     <Card>

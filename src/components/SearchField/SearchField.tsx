@@ -1,29 +1,11 @@
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  Search,
-  SearchIconWrapper,
-  StyledInputBase,
-} from "./SearchField.styled";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectData } from "../../redux/selectors";
-import { Product } from "../../types/interfaces";
-import { setFiltredProducts } from "../../redux/mainSlice";
+import { Search, SearchIconWrapper, StyledInputBase } from "./SearchField.styled";
 
-export const SearchField = () => {
-  const { products } = useAppSelector(selectData);
-  const dispatch = useAppDispatch();
+interface SearchFieldProps {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTimeout(() => {
-      const value = e.target.value.trim();
-
-      const filtredProducts = products.filter((item: Product) =>
-        item.title.toLowerCase().includes(value.toLowerCase())
-      );
-      dispatch(setFiltredProducts(filtredProducts));
-    }, 1000);
-  };
-
+export const SearchField = ({ handleChange }: SearchFieldProps) => {
   return (
     <Search>
       <SearchIconWrapper>

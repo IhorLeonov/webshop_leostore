@@ -13,6 +13,8 @@ export interface MainState {
   error: string | null;
   data: {
     products: Product[];
-    filtredProducts: Product[];
+    filteredProducts: Product[];
+    filteredCategories: string[];
+    categories: string[];
   };
 }

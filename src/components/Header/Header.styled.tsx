@@ -9,8 +9,8 @@ export const HeaderSection = styled.header`
   padding: 0 40px;
   height: 90px;
 
-  background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.black};
 `;
 
 export const LogoLink = styled(Link)`

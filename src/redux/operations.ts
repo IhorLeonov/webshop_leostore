@@ -16,3 +16,16 @@ export const getAllProducts = createAsyncThunk(
     }
   }
 );
+
+export const getAllCategories = createAsyncThunk(
+  "main/getAllCategories",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get("/products/categories");
+      return res.data;
+    } catch (err) {
+      const error = err as AxiosError<string>;
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

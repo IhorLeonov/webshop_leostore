@@ -8,6 +8,6 @@ export const FooterSection = styled.footer`
   padding: 0 24px;
   height: 60px;
 
-  background-color: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.black};
 `;

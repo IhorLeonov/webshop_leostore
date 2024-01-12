@@ -1,42 +1,93 @@
 import { useEffect, useState } from "react";
-import { ProductList, SearchAppBar } from "../../components/index";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { getAllProducts } from "../../redux/operations";
+import { Product } from "../../types/interfaces";
+import {
+  ProductList,
+  AppBar,
+  Sidebar,
+  CheckboxList,
+  SearchField,
+} from "../../components/index";
+import {
+  resetCategories,
+  setFilteredCategories,
+  setFilteredProducts,
+} from "../../redux/mainSlice";
+
 import { MainPage } from "./Main.styled";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { getAllCategories, getAllProducts } from "../../redux/operations";
 import { selectData } from "../../redux/selectors";
-import { setFiltredProducts } from "../../redux/mainSlice";
-import Sidebar from "../../components/Sidebar/Sidebar";
 
 const Main = () => {
-  // const productList = products.slice(0, 6);
-  const dispatch = useAppDispatch();
-  const { products, filtredProducts } = useAppSelector(selectData);
-  const [open, setOpen] = useState<boolean>(false);
+  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const dispatch = useAppDispatch();
+  const { products, categories, filteredProducts, filteredCategories } =
+    useAppSelector(selectData);
+
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(resetCategories());
+    setTimeout(() => {
+      const value = e.target.value.trim();
+
+      const filteredProducts = products.filter((item: Product) =>
+        item.title.toLowerCase().includes(value.toLowerCase())
+      );
+      dispatch(setFilteredProducts(filteredProducts));
+    }, 1000);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const toggleOpenDrawer = (value: boolean) => {
+    setOpenSidebar(value);
+  };
+
+  const handleChangeCategory = (value: string) => {
+    dispatch(setFilteredCategories(value));
+  };
+
+  const getFilteredProductsByCategory = (categories: string[]): Product[] => {
+    if (categories.length < 1) {
+      return products;
+    } else {
+      const filteredData = categories.flatMap((category) => {
+        return products.filter((product) => product.category === category);
+      });
+      return filteredData.sort((a, b) => a.title.localeCompare(b.title));
+    }
   };
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getAllCategories());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    dispatch(setFiltredProducts(products));
+    dispatch(setFilteredProducts(products));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [products]);
 
+  useEffect(() => {
+    dispatch(setFilteredProducts(getFilteredProductsByCategory(filteredCategories)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filteredCategories]);
+
   return (
-    <MainPage>
-      <SearchAppBar handleDrawerOpen={handleDrawerOpen} />
-      <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
-      <ProductList products={filtredProducts} />
-    </MainPage>
+    <>
+      <AppBar toggleOpenDrawer={toggleOpenDrawer}>
+        <SearchField handleChange={handleChangeSearch} />
+      </AppBar>
+      <MainPage>
+        <Sidebar open={openSidebar} toggleOpenDrawer={toggleOpenDrawer}>
+          <CheckboxList
+            valuesArray={categories}
+            handleChange={handleChangeCategory}
+            checkedInputs={filteredCategories}
+          />
+        </Sidebar>
+        <ProductList products={filteredProducts} />
+      </MainPage>
+    </>
   );
 };
 
