@@ -1,11 +1,14 @@
-import { FooterProps } from "./Footer.props";
-import { FooterSection } from "./Footer.styled";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
+import { FooterSection, Text } from "./Footer.styled";
+
+interface FooterProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export const Footer = ({ ...props }: FooterProps) => {
   return (
     <FooterSection {...props}>
       <p>leostore.</p>
-      <p style={{ fontWeight: 300 }}>© all rights reserved</p>
+      <Text>© all rights reserved</Text>
     </FooterSection>
   );
 };

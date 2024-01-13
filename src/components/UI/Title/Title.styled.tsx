@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 
 export const Large = styled.h1`
-  font-size: 36px;
-  font-weight: 700;
+  font-family: "Kanit Regular", sans-serif;
+  font-size: 28px;
 
-  /* @media (max-width: 455px) {
-    font-size: 36px;
-  } */
+  @media (min-width: 600px) {
+    font-size: 42px;
+    font-weight: 700;
+  }
 `;
 
 export const Medium = styled.h2`

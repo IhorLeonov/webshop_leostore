@@ -12,6 +12,13 @@ export const GlobalStyles = css`
     scroll-behavior: smooth;
   }
 
+  @font-face {
+    src: url("/src/assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+
+    font-family: "Kanit Regular";
+    font-weight: 400;
+  }
+
   *,
   *:after,
   *:before {
@@ -19,12 +26,6 @@ export const GlobalStyles = css`
   }
 
   body {
-    /* display: flex; */
-    /* flex-direction: column; */
-
-    /* margin-left: auto;
-    margin-right: auto; */
-
     font-family: "Roboto", sans-serif;
     color: #3b434e;
   }

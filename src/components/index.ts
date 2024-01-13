@@ -7,4 +7,5 @@ export * from "./AppBar/AppBar";
 export * from "./CheckboxList/CheckboxList";
 export * from "./SearchField/SearchField";
 export * from "./UI/Title/Title";
-export * from "./UI/Container/Container";
+export * from "./UI/NavLink/NavLink";
+export * from "./NavLinkList/NavLinkList";

@@ -1,5 +1,9 @@
-import { TitleProps } from "./Title.props";
 import { Large, Medium, Small } from "./Title.styled";
+
+interface TitleProps {
+  tag: "h1" | "h2" | "h3";
+  children: React.ReactNode;
+}
 
 export const Title = ({ tag, children, ...props }: TitleProps): JSX.Element => {
   switch (tag) {
