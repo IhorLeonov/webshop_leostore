@@ -5,22 +5,10 @@ import App from "./App.tsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.ts";
 import { BrowserRouter } from "react-router-dom";
-
 import { GlobalStyles } from "./constants/GlobalStyles.ts";
 import { Global, ThemeProvider } from "@emotion/react";
 import { theme } from "./constants/theme.ts";
-
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
-
-declare module "@mui/material/styles" {
-  interface Theme {
-    colors: { [k: string]: string };
-  }
-
-  interface ThemeOptions {
-    colors: { [k: string]: string };
-  }
-}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -14,7 +14,7 @@ export const IconWrapper = styled.div`
       height: 28px;
     }
 
-    transition: 0.3s ease-in-out;
+    transition: ${({ theme }) => theme.transitions.easing.easeInOut};
 
     &:hover,
     &:focus {

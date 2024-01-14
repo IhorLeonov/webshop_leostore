@@ -25,7 +25,7 @@ export function AppBar({ toggleOpenDrawer, children }: SearchAppBarProps) {
           variant="h6"
           noWrap
           component="div"
-          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+          sx={{ flexGrow: 1, fontSize: 18, display: { xs: "none", sm: "block" } }}
         >
           Shop now!
         </Typography>

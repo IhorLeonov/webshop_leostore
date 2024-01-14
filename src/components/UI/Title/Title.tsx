@@ -1,6 +1,8 @@
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Large, Medium, Small } from "./Title.styled";
 
-interface TitleProps {
+interface TitleProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement> {
   tag: "h1" | "h2" | "h3";
   children: React.ReactNode;
 }

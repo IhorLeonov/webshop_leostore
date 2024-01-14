@@ -3,7 +3,8 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   colors: {
     black: "#060412",
-    white: "#F9FAFF",
+    white: "#fff",
+    background: "#F9FAFF",
     lightBlack: "#3b434e",
     red: "#fc836d",
     hover: "#6fb98f",
@@ -15,11 +16,17 @@ export const theme = createTheme({
       dark: "#021c1e",
       contrastText: "#F9FAFF",
     },
+
     // secondary: {
     //   main: "#07575b",
     //   light: "#66a5ad",
     //   dark: "#003b46",
     //   contrastText: "#c4dfe6",
     // },
+  },
+  transitions: {
+    easing: {
+      easeInOut: "0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    },
   },
 });

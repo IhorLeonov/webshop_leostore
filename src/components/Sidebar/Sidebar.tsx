@@ -17,7 +17,7 @@ export const Sidebar = ({ open, toggleOpenDrawer, children }: SidebarProps) => {
       onClose={() => toggleOpenDrawer(false)}
     >
       <DrawerHeader>
-        <Typography>Categories</Typography>
+        <Typography sx={{ fontWeight: 500 }}>Choose category</Typography>
         <IconButton onClick={() => toggleOpenDrawer(false)}>
           <ChevronLeftIcon />
         </IconButton>

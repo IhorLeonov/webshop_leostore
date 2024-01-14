@@ -8,14 +8,12 @@ interface ProductListProps {
 
 export const ProductList = ({ products }: ProductListProps) => {
   return (
-    <>
-      <List>
-        {products.map(({ id, ...props }: Product) => (
-          <li key={id}>
-            <ProductCard product={{ id, ...props }} />
-          </li>
-        ))}
-      </List>
-    </>
+    <List>
+      {products.map(({ id, ...props }: Product) => (
+        <li key={id}>
+          <ProductCard product={{ id, ...props }} />
+        </li>
+      ))}
+    </List>
   );
 };

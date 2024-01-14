@@ -6,11 +6,14 @@ export const HeaderSection = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 16px;
+  padding-left: 16px;
+  padding-right: 6px;
+
   height: 60px;
 
   @media (min-width: 600px) {
-    padding: 0 24px;
+    padding-left: 24px;
+    padding-right: 14px;
     height: 85px;
   }
 

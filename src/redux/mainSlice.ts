@@ -1,5 +1,5 @@
 import { isAnyOf, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getAllProducts, getAllCategories } from "./operations";
+import { getAllProducts, getAllCategories, getSingleProduct } from "./operations";
 import { MainState, Product } from "../types/interfaces";
 
 const handleSameFulfilled = (state: MainState) => {
@@ -11,6 +11,7 @@ const initialState = {
   isLoading: false,
   error: null,
   data: {
+    product: null,
     products: [],
     categories: [],
     filteredProducts: [],
@@ -53,11 +54,26 @@ const mainSlice = createSlice({
         handleSameFulfilled(state);
         state.data.categories = action.payload;
       })
-      .addMatcher(isAnyOf(getAllProducts.pending, getAllCategories.pending), (state) => {
-        state.isLoading = true;
+      .addCase(getSingleProduct.fulfilled, (state, action) => {
+        handleSameFulfilled(state);
+        state.data.product = action.payload;
       })
       .addMatcher(
-        isAnyOf(getAllProducts.rejected, getAllCategories.rejected),
+        isAnyOf(
+          getAllProducts.pending,
+          getAllCategories.pending,
+          getSingleProduct.pending
+        ),
+        (state) => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          getAllProducts.rejected,
+          getAllCategories.rejected,
+          getSingleProduct.rejected
+        ),
         (state, action) => {
           state.isLoading = false;
           if (typeof action.payload === "string") state.error = action.payload;

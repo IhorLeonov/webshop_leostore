@@ -13,7 +13,7 @@ import {
   setFilteredProducts,
 } from "../../redux/mainSlice";
 
-import { MainPage } from "./Main.styled";
+import { Wrapper } from "./Main.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAllCategories, getAllProducts } from "../../redux/operations";
 import { selectData } from "../../redux/selectors";
@@ -77,7 +77,7 @@ const Main = () => {
       <AppBar toggleOpenDrawer={toggleOpenDrawer}>
         <SearchField handleChange={handleChangeSearch} />
       </AppBar>
-      <MainPage>
+      <Wrapper>
         <Sidebar open={openSidebar} toggleOpenDrawer={toggleOpenDrawer}>
           <CheckboxList
             valuesArray={categories}
@@ -86,7 +86,7 @@ const Main = () => {
           />
         </Sidebar>
         <ProductList products={filteredProducts} />
-      </MainPage>
+      </Wrapper>
     </>
   );
 };

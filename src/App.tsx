@@ -3,10 +3,10 @@ import { Footer, Header } from "./components";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 
-const Main = lazy(() => import("./pages/Main/Main"));
-const Cart = lazy(() => import("./pages/Cart/Cart"));
-const Order = lazy(() => import("./pages/Order/Order"));
-const Product = lazy(() => import("./pages/Product/Product"));
+const MainPage = lazy(() => import("./pages/Main/Main"));
+const CartPage = lazy(() => import("./pages/Cart/Cart"));
+const OrderPage = lazy(() => import("./pages/Order/Order"));
+const ProductPage = lazy(() => import("./pages/Product/Product"));
 
 const App = () => {
   return (
@@ -15,10 +15,10 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Main />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="order" element={<Order />} />
-            <Route path="product" element={<Product />} />
+            <Route index element={<MainPage />} />
+            <Route path="cart" element={<CartPage />} />
+            <Route path="order" element={<OrderPage />} />
+            <Route path="product/:id" element={<ProductPage />} />
           </Route>
         </Routes>
       </main>

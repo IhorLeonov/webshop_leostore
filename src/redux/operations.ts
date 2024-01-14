@@ -29,3 +29,16 @@ export const getAllCategories = createAsyncThunk(
     }
   }
 );
+
+export const getSingleProduct = createAsyncThunk(
+  "main/getSingleProduct",
+  async ({ productId }: { productId: string }, thunkAPI) => {
+    try {
+      const res = await axios.get(`/products/${productId}`);
+      return res.data;
+    } catch (err) {
+      const error = err as AxiosError<string>;
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
