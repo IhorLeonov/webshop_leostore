@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
+export const LayoutCmp = styled.section`
   min-height: calc(100vh - 60px);
   background-color: ${({ theme }) => theme.colors.background};
 

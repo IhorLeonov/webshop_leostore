@@ -9,21 +9,23 @@ interface NavLinkListProps
 
 export const NavLinkList = ({ ...props }: NavLinkListProps) => {
   return (
-    <LinkList {...props}>
-      <li>
-        <NavLink to="/">
-          <IconWrapper>
-            <HiHome />
-          </IconWrapper>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/cart">
-          <IconWrapper>
-            <HiShoppingBag />
-          </IconWrapper>
-        </NavLink>
-      </li>
-    </LinkList>
+    <nav>
+      <LinkList {...props}>
+        <li>
+          <NavLink to="/">
+            <IconWrapper>
+              <HiHome />
+            </IconWrapper>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/cart">
+            <IconWrapper>
+              <HiShoppingBag />
+            </IconWrapper>
+          </NavLink>
+        </li>
+      </LinkList>
+    </nav>
   );
 };

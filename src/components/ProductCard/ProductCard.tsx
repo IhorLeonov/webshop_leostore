@@ -1,8 +1,6 @@
-import { Title } from "../index";
+import { Button, Title } from "../index";
 import { Product } from "../../types/interfaces";
 import { Card, Image, Category } from "./ProductCard.styled";
-import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import { Link, useLocation } from "react-router-dom";
 
 interface ProductCardProps {
@@ -22,17 +20,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <Category>{category}</Category>
       <p>{price} $</p>
       <Button
-        variant="contained"
-        size="small"
-        sx={{
-          position: "absolute",
-          top: 12,
-          left: 12,
-        }}
-        aria-label="add to cart"
-      >
-        <AddIcon />
-      </Button>
+        product={product}
+        option="add-small"
+        sx={{ position: "absolute", top: 12 }}
+      />
     </Card>
   );
 };

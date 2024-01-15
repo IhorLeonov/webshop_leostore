@@ -1,3 +1,19 @@
+export interface Theme {
+  colors: {
+    black: string;
+    white: string;
+    background: string;
+    lightBlack: string;
+    red: string;
+    hover: string;
+  };
+  transitions: {
+    easing: {
+      easeInOut: string;
+    };
+  };
+}
+
 export interface Product {
   category: string;
   description: string;
@@ -6,6 +22,10 @@ export interface Product {
   price: number;
   rating: { rate: number; count: number };
   title: string;
+}
+
+interface CartItem extends Omit<Product, "category" | "description" | "rating"> {
+  count: number;
 }
 
 export interface MainState {
@@ -17,14 +37,6 @@ export interface MainState {
     filteredProducts: Product[];
     filteredCategories: string[];
     categories: string[];
-  };
-}
-
-export interface Theme {
-  colors: { [k: string]: string };
-  transitions: {
-    easing: {
-      easeInOut: string;
-    };
+    cart: CartItem[];
   };
 }

@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
-import { Container } from "./Layout.styled";
+import { LayoutCmp } from "./Layout.styled";
 
 export const Layout = () => {
   return (
-    <Container>
+    <LayoutCmp>
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-    </Container>
+    </LayoutCmp>
   );
 };

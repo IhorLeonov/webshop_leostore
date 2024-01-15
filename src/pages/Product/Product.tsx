@@ -3,6 +3,7 @@ import { useLocation, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getSingleProduct } from "../../redux/operations";
 import { selectData } from "../../redux/selectors";
+import { Button, NavLink, Title, Wrapper } from "../../components";
 import {
   Card,
   Image,
@@ -12,8 +13,6 @@ import {
   Rate,
   Caption,
 } from "./Product.styled";
-import { BackLink, Title, Wrapper } from "../../components";
-import { Button } from "@mui/material";
 
 const Product = () => {
   const { id } = useParams();
@@ -30,7 +29,9 @@ const Product = () => {
   return (
     <Wrapper>
       <>
-        <BackLink path={backLinkHref} />
+        <NavLink to={backLinkHref} style={{ padding: 0, width: 100 }}>
+          <Button option="back" />
+        </NavLink>
         <Card>
           <Image src={product?.image} alt={product?.title} loading="lazy" />
           <ProductDesc>
@@ -41,13 +42,7 @@ const Product = () => {
             </Rate>
             <Price>{product?.price} $</Price>
             <Caption>{product?.description}</Caption>
-            <Button
-              variant="contained"
-              aria-label="add to cart"
-              sx={{ mt: "12px", width: 120 }}
-            >
-              Buy
-            </Button>
+            <Button product={product} option="add-wide" sx={{ width: 120, mt: "12px" }} />
           </ProductDesc>
         </Card>
       </>
