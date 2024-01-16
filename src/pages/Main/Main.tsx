@@ -6,6 +6,7 @@ import {
   Sidebar,
   CheckboxList,
   SearchField,
+  Container,
 } from "../../components/index";
 import {
   resetCategories,
@@ -13,7 +14,6 @@ import {
   setFilteredProducts,
 } from "../../redux/mainSlice";
 
-import { Wrapper } from "./Main.styled";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAllCategories, getAllProducts } from "../../redux/operations";
 import { selectData } from "../../redux/selectors";
@@ -77,7 +77,7 @@ const Main = () => {
       <AppBar toggleOpenDrawer={toggleOpenDrawer}>
         <SearchField handleChange={handleChangeSearch} />
       </AppBar>
-      <Wrapper>
+      <Container>
         <Sidebar open={openSidebar} toggleOpenDrawer={toggleOpenDrawer}>
           <CheckboxList
             valuesArray={categories}
@@ -86,7 +86,7 @@ const Main = () => {
           />
         </Sidebar>
         <ProductList products={filteredProducts} />
-      </Wrapper>
+      </Container>
     </>
   );
 };

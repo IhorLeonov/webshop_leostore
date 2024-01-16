@@ -1,58 +1,62 @@
 import { Button as MuiButton, ButtonProps } from "@mui/material";
-import { Product } from "../../types/interfaces";
-import { useAppDispatch } from "../../redux/hooks";
-import { addToCart } from "../../redux/mainSlice";
-
 import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 interface AddButtonProps extends ButtonProps {
-  product?: Product | null;
-  option: "add-small" | "add-wide" | "back";
+  option: "add" | "plus" | "minus" | "back" | "button";
+  children?: React.ReactNode | string;
+  ariaLabel?: string;
 }
 
-export const Button = ({ option, product, ...props }: AddButtonProps) => {
-  const dispatch = useAppDispatch();
-
-  const handleClick = () => {
-    product && dispatch(addToCart(product));
-  };
-
+export const Button = ({ option, ariaLabel, children, ...props }: AddButtonProps) => {
   switch (option) {
-    case "add-small":
+    case "button":
+      return (
+        <MuiButton variant="contained" aria-label={ariaLabel} {...props}>
+          {children}
+        </MuiButton>
+      );
+    case "add":
+      return (
+        <MuiButton variant="contained" aria-label="add" {...props}>
+          <AddIcon />
+        </MuiButton>
+      );
+    case "plus":
       return (
         <MuiButton
-          variant="contained"
-          aria-label="add to cart"
-          onClick={handleClick}
-          size="small"
+          variant="text"
+          aria-label="plus"
+          sx={{ minWidth: 0, width: 30, height: 30 }}
           {...props}
         >
           <AddIcon />
         </MuiButton>
       );
-    case "add-wide":
+    case "minus":
       return (
         <MuiButton
-          variant="contained"
-          aria-label="add to cart"
-          onClick={handleClick}
+          variant="text"
+          aria-label="minus"
+          sx={{ minWidth: 0, width: 30, height: 30 }}
           {...props}
         >
-          Buy
+          <RemoveIcon />
         </MuiButton>
       );
     case "back":
       return (
         <MuiButton
           variant="text"
-          aria-label="go back"
+          aria-label="back"
           sx={{ paddingRight: "20px", width: "100%" }}
         >
           <KeyboardArrowLeftIcon />
           Back
         </MuiButton>
       );
+
     default:
       return <></>;
   }

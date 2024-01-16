@@ -11,7 +11,12 @@ export const Large = styled.h1`
 `;
 
 export const Medium = styled.h2`
-  font-size: 22px;
+  font-family: "Kanit Medium", sans-serif;
+  font-size: 20px;
+
+  @media (min-width: 600px) {
+    font-size: 24px;
+  }
 `;
 
 export const Small = styled.h3`

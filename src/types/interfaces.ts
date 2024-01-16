@@ -6,6 +6,15 @@ export interface Theme {
     lightBlack: string;
     red: string;
     hover: string;
+    accent: string;
+  };
+  palette: {
+    primary: {
+      main: string;
+      light: string;
+      dark: string;
+      contrastText: string;
+    };
   };
   transitions: {
     easing: {
@@ -24,19 +33,23 @@ export interface Product {
   title: string;
 }
 
-interface CartItem extends Omit<Product, "category" | "description" | "rating"> {
-  count: number;
-}
-
-export interface MainState {
+export interface MainSliceState {
   isLoading: boolean;
   error: string | null;
+  message: string | null;
   data: {
     product: Product | null;
     products: Product[];
     filteredProducts: Product[];
     filteredCategories: string[];
     categories: string[];
-    cart: CartItem[];
   };
+}
+
+export interface CartItem extends Omit<Product, "category" | "description" | "rating"> {
+  count: number;
+}
+
+export interface CartSliceState {
+  cart: CartItem[];
 }

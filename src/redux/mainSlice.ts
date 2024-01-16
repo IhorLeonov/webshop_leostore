@@ -1,8 +1,8 @@
 import { isAnyOf, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getAllProducts, getAllCategories, getSingleProduct } from "./operations";
-import { MainState, Product } from "../types/interfaces";
+import { MainSliceState, Product } from "../types/interfaces";
 
-const handleSameFulfilled = (state: MainState) => {
+const handleSameFulfilled = (state: MainSliceState) => {
   state.isLoading = false;
   state.error = null;
 };
@@ -10,15 +10,15 @@ const handleSameFulfilled = (state: MainState) => {
 const initialState = {
   isLoading: false,
   error: null,
+  message: null,
   data: {
-    cart: [],
     product: null,
     products: [],
     categories: [],
     filteredProducts: [],
     filteredCategories: [],
   },
-} as MainState;
+} as MainSliceState;
 
 const mainSlice = createSlice({
   name: "main",
@@ -38,28 +38,15 @@ const mainSlice = createSlice({
         state.data.filteredCategories.push(category);
       }
     },
-    addToCart: (state, action: PayloadAction<Product>) => {
-      const cart = state.data.cart;
-      const { id, image, title, price } = action.payload;
-      const newItem = { id, image, price, title, count: 1 };
-
-      if (cart.length < 1) {
-        state.data.cart.push(newItem);
-        return;
-      }
-      const idx = cart.findIndex((item) => item.id === id);
-
-      if (idx === -1) {
-        state.data.cart.push(newItem);
-      } else {
-        state.data.cart[idx].count += 1;
-      }
-    },
     resetCategories: (state) => {
       state.data.filteredCategories = [];
     },
-    resetError: (state) => {
-      state.error = null;
+    setMessage: (state, action) => {
+      state.message = action.payload;
+    },
+    resetNotification: (state, action: PayloadAction<string>) => {
+      if (action.payload === "error") state.error = null;
+      if (action.payload === "message") state.message = null;
     },
   },
   extraReducers: (builder) => {
@@ -104,7 +91,7 @@ export const {
   setFilteredProducts,
   setFilteredCategories,
   resetCategories,
-  resetError,
-  addToCart,
+  setMessage,
+  resetNotification,
 } = mainSlice.actions;
 export const mainReducer = mainSlice.reducer;

@@ -28,7 +28,7 @@ export const HeaderSection = styled.header`
 
 export const Link = styled(RouterLink)`
   @media (min-width: 1250px) {
-    margin-left: 555px;
+    margin-left: 580px;
     transform: translateX(-50%);
   }
 `;

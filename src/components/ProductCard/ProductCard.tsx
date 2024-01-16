@@ -2,6 +2,9 @@ import { Button, Title } from "../index";
 import { Product } from "../../types/interfaces";
 import { Card, Image, Category } from "./ProductCard.styled";
 import { Link, useLocation } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { addToCart } from "../../redux/cartSlice";
+import { setMessage } from "../../redux/mainSlice";
 
 interface ProductCardProps {
   product: Product;
@@ -10,6 +13,14 @@ interface ProductCardProps {
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { id, title, image, category, price } = product;
   const location = useLocation();
+  const dispatch = useAppDispatch();
+
+  const handleClick = (id: number) => {
+    if (product) {
+      dispatch(addToCart(product));
+      dispatch(setMessage(`Item ${id} successfully added to cart!`));
+    }
+  };
 
   return (
     <Card>
@@ -20,8 +31,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <Category>{category}</Category>
       <p>{price} $</p>
       <Button
-        product={product}
-        option="add-small"
+        option="add"
+        onClick={() => handleClick(id)}
         sx={{ position: "absolute", top: 12 }}
       />
     </Card>

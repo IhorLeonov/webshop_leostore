@@ -19,6 +19,13 @@ export const GlobalStyles = css`
     font-weight: 400;
   }
 
+  @font-face {
+    src: url("/src/assets/fonts/Kanit/Kanit-Medium.ttf") format("truetype");
+
+    font-family: "Kanit Medium";
+    font-weight: 500;
+  }
+
   *,
   *:after,
   *:before {

@@ -2,6 +2,7 @@ import { lazy } from "react";
 import { Footer, Header } from "./components";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
+import { Notifications } from "./components/Notifications/Notifications";
 
 const MainPage = lazy(() => import("./pages/Main/Main"));
 const CartPage = lazy(() => import("./pages/Cart/Cart"));
@@ -23,6 +24,7 @@ const App = () => {
         </Routes>
       </main>
       <Footer />
+      <Notifications />
     </>
   );
 };

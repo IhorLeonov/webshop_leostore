@@ -3,11 +3,12 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   colors: {
     black: "#060412",
-    white: "#fff",
+    white: "#FFF",
     background: "#F9FAFF",
     lightBlack: "#3b434e",
     red: "#fc836d",
     hover: "#6fb98f",
+    accent: "#2c7873",
   },
   palette: {
     primary: {
