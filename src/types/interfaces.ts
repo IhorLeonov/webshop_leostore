@@ -4,6 +4,8 @@ export interface Theme {
     white: string;
     background: string;
     lightBlack: string;
+    lightGray: string;
+    gray: string;
     red: string;
     hover: string;
     accent: string;
@@ -52,4 +54,11 @@ export interface CartItem extends Omit<Product, "category" | "description" | "ra
 
 export interface CartSliceState {
   cart: CartItem[];
+  totalPrice: number;
+}
+
+export interface FormValues {
+  name: string;
+  email: string;
+  phone: string;
 }

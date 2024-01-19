@@ -15,10 +15,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const location = useLocation();
   const dispatch = useAppDispatch();
 
-  const handleClick = (id: number) => {
+  const handleClick = () => {
     if (product) {
       dispatch(addToCart(product));
-      dispatch(setMessage(`Item ${id} successfully added to cart!`));
+      dispatch(setMessage(`Item successfully added to cart!`));
     }
   };
 
@@ -32,7 +32,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       <p>{price} $</p>
       <Button
         option="add"
-        onClick={() => handleClick(id)}
+        onClick={() => handleClick()}
         sx={{ position: "absolute", top: 12 }}
       />
     </Card>

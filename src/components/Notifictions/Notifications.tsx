@@ -13,14 +13,14 @@ export const Notifications = () => {
   useEffect(() => {
     if (error) {
       toast.error(error, {
-        position: "top-center",
+        position: "bottom-left",
         autoClose: false,
-        theme: "dark",
+        theme: "colored",
       });
     }
 
     return () => {
-      () => dispatch(resetNotification("error"));
+      dispatch(resetNotification("error"));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
@@ -28,13 +28,14 @@ export const Notifications = () => {
   useEffect(() => {
     if (message) {
       toast.success(message, {
+        position: "bottom-left",
         theme: "dark",
         hideProgressBar: true,
       });
     }
 
     return () => {
-      () => dispatch(resetNotification("message"));
+      dispatch(resetNotification("message"));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message]);

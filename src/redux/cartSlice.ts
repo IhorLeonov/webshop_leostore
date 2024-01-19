@@ -3,6 +3,7 @@ import { CartSliceState, Product } from "../types/interfaces";
 
 const initialState = {
   cart: [],
+  totalPrice: 0,
 } as CartSliceState;
 
 const cartSlice = createSlice({
@@ -39,9 +40,21 @@ const cartSlice = createSlice({
     removeItem: (state, action: PayloadAction<{ id: number }>) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
+    resetCart: (state) => {
+      state.cart = [];
+    },
+    setTotalPrice: (state, action) => {
+      state.totalPrice = action.payload;
+    },
   },
 });
 
-export const { addToCart, increaseItemCount, decreaseItemCount, removeItem } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  increaseItemCount,
+  decreaseItemCount,
+  removeItem,
+  resetCart,
+  setTotalPrice,
+} = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

@@ -44,7 +44,7 @@ const mainSlice = createSlice({
     setMessage: (state, action) => {
       state.message = action.payload;
     },
-    resetNotification: (state, action: PayloadAction<string>) => {
+    resetNotification: (state, action: PayloadAction<"error" | "message">) => {
       if (action.payload === "error") state.error = null;
       if (action.payload === "message") state.message = null;
     },

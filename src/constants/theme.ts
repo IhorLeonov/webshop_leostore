@@ -6,6 +6,8 @@ export const theme = createTheme({
     white: "#FFF",
     background: "#F9FAFF",
     lightBlack: "#3b434e",
+    lightGray: "#d0cfcf",
+    gray: "#7e7e7e",
     red: "#fc836d",
     hover: "#6fb98f",
     accent: "#2c7873",

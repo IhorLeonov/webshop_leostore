@@ -9,6 +9,8 @@ export * from "./SearchField/SearchField";
 export * from "./ProductCard/ProductCard";
 export * from "./ProductList/ProductList";
 export * from "./NavLinkList/NavLinkList";
+export * from "./CheckoutForm/CheckoutForm";
+export * from "./CartItemsList/CartItemsList";
 
 // UI elements
 export * from "./UI/Title/Title";

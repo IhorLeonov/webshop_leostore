@@ -26,9 +26,9 @@ export const Button = ({ option, ariaLabel, children, ...props }: AddButtonProps
     case "plus":
       return (
         <MuiButton
-          variant="text"
+          variant="outlined"
           aria-label="plus"
-          sx={{ minWidth: 0, width: 30, height: 30 }}
+          sx={{ minWidth: 0, width: 32, height: 32 }}
           {...props}
         >
           <AddIcon />
@@ -37,9 +37,9 @@ export const Button = ({ option, ariaLabel, children, ...props }: AddButtonProps
     case "minus":
       return (
         <MuiButton
-          variant="text"
+          variant="outlined"
           aria-label="minus"
-          sx={{ minWidth: 0, width: 30, height: 30 }}
+          sx={{ minWidth: 0, width: 32, height: 32 }}
           {...props}
         >
           <RemoveIcon />
