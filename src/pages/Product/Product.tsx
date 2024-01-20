@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { getSingleProduct } from "../../redux/operations";
+import { getProductsInCategory, getSingleProduct } from "../../redux/operations";
 import { selectData } from "../../redux/selectors";
-import { Button, NavLink, Title, Container } from "../../components";
+import { Button, Title, Container } from "../../components";
 import { addToCart } from "../../redux/cartSlice";
 import {
   Card,
@@ -23,11 +23,19 @@ const Product = () => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const backLinkHref = location.state?.from ?? "/";
+  const navigate = useNavigate();
 
   const handleClick = () => {
     if (product) {
       dispatch(addToCart(product));
       dispatch(setMessage("Item successfully added to cart!"));
+    }
+  };
+
+  const handleCategoryClick = (category: string | undefined) => {
+    if (category) {
+      navigate("/");
+      dispatch(getProductsInCategory({ category }));
     }
   };
 
@@ -38,18 +46,19 @@ const Product = () => {
 
   return (
     <Container>
-      <NavLink to={backLinkHref} style={{ padding: 0, width: 100 }}>
-        <Button option="back" />
-      </NavLink>
+      <Button option="back" path={backLinkHref} />
+
       <Card>
         <Image src={product?.image} alt={product?.title} loading="lazy" />
         <ProductDesc>
           <Title tag="h2">{product?.title}</Title>
-          <Category>{product?.category}</Category>
+          <Category onClick={() => handleCategoryClick(product?.category)}>
+            {product?.category}
+          </Category>
           <Rate>
             Rate <span>{product?.rating.rate}/5</span>
           </Rate>
-          <Price>{product?.price} $</Price>
+          <Price>{product?.price.toFixed(2)} $</Price>
           <Caption>{product?.description}</Caption>
           <Button
             option="button"

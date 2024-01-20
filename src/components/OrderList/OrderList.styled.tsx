@@ -9,10 +9,6 @@ export const List = styled.ul`
 
   margin-left: auto;
   margin-right: auto;
-
-  @media (min-width: 600px) {
-    margin-top: 40px;
-  }
 `;
 
 export const ListItem = styled.li`
@@ -22,9 +18,9 @@ export const ListItem = styled.li`
 
 export const Image = styled.img`
   padding: 10px;
+  min-width: 140px;
   height: 140px;
   width: 140px;
-  min-width: 140px;
 
   object-fit: contain;
 `;

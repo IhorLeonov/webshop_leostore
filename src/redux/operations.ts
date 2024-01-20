@@ -42,3 +42,16 @@ export const getSingleProduct = createAsyncThunk(
     }
   }
 );
+
+export const getProductsInCategory = createAsyncThunk(
+  "main/getProductsInCategory",
+  async ({ category }: { category: string }, thunkAPI) => {
+    try {
+      const res = await axios.get(`/products/category/${category}`);
+      return res.data;
+    } catch (err) {
+      const error = err as AxiosError<string>;
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

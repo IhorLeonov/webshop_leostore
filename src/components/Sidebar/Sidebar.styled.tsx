@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Drawer } from "@mui/material";
+import { Drawer, ListItemButton as Button } from "@mui/material";
 
 export const MuiDrawer = styled(Drawer)`
   position: "static";
@@ -16,7 +16,12 @@ export const DrawerHeader = styled.div`
   justify-content: space-between;
 
   padding: 0px 8px;
-  padding-left: 28px;
+  padding-left: 38px;
 
   min-height: 56px;
+`;
+
+export const ListItemButton = styled(Button)`
+  padding: 20px 38px;
+  text-transform: capitalize;
 `;

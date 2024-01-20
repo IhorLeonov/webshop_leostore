@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-// import { Form, Field } from "formik";
 import { Button } from "..";
+import { Field as FormikField, Form as FormikForm } from "formik";
 
-export const Form = styled.form`
+export const Form = styled(FormikForm)`
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -12,11 +12,11 @@ export const Form = styled.form`
     flex-wrap: wrap;
     gap: 0 20px;
 
-    width: 680px;
+    width: 700px;
   }
 `;
 
-export const Field = styled.input`
+export const Field = styled(FormikField)`
   padding: 0 10px;
   margin-bottom: 4px;
 
@@ -36,7 +36,7 @@ export const Field = styled.input`
   }
 
   @media (min-width: 800px) {
-    width: 330px;
+    width: 340px;
   }
 `;
 
@@ -59,7 +59,7 @@ export const StyledButton = styled(Button)`
   width: 100%;
 
   @media (min-width: 800px) {
-    width: 330px;
+    width: 340px;
     height: 40px;
   }
 `;

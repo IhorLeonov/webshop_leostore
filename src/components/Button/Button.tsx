@@ -2,14 +2,24 @@ import { Button as MuiButton, ButtonProps } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { useNavigate } from "react-router";
 
 interface AddButtonProps extends ButtonProps {
   option: "add" | "plus" | "minus" | "back" | "button";
   children?: React.ReactNode | string;
   ariaLabel?: string;
+  path?: string;
 }
 
-export const Button = ({ option, ariaLabel, children, ...props }: AddButtonProps) => {
+export const Button = ({
+  option,
+  ariaLabel,
+  children,
+  path = "/",
+  ...props
+}: AddButtonProps) => {
+  const navigate = useNavigate();
+
   switch (option) {
     case "button":
       return (
@@ -50,7 +60,8 @@ export const Button = ({ option, ariaLabel, children, ...props }: AddButtonProps
         <MuiButton
           variant="text"
           aria-label="back"
-          sx={{ paddingRight: "20px", width: "100%" }}
+          onClick={() => navigate(path)}
+          sx={{ paddingRight: "20px", width: "100px" }}
         >
           <KeyboardArrowLeftIcon />
           Back

@@ -1,59 +1,39 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../types/interfaces";
 import {
-  ProductList,
+  MainList,
   AppBar,
   Sidebar,
-  CheckboxList,
   SearchField,
   Container,
+  Button,
 } from "../../components/index";
-import {
-  resetCategories,
-  setFilteredCategories,
-  setFilteredProducts,
-} from "../../redux/mainSlice";
-
+import { setFilteredProducts, setPage } from "../../redux/mainSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAllCategories, getAllProducts } from "../../redux/operations";
-import { selectData } from "../../redux/selectors";
+import { selectData, selectPage } from "../../redux/selectors";
+import { Box } from "@mui/material";
 
 const Main = () => {
-  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
-
   const dispatch = useAppDispatch();
-  const { products, categories, filteredProducts, filteredCategories } =
-    useAppSelector(selectData);
+  const page = useAppSelector(selectPage);
+  const { products, categories, filteredProducts } = useAppSelector(selectData);
+
+  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
+  const [slicedProducts, setSlicedProducts] = useState<Product[]>(filteredProducts);
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(resetCategories());
     setTimeout(() => {
       const value = e.target.value.trim();
-
       const filteredProducts = products.filter((item: Product) =>
         item.title.toLowerCase().includes(value.toLowerCase())
       );
       dispatch(setFilteredProducts(filteredProducts));
-    }, 1000);
+    }, 700);
   };
 
   const toggleOpenDrawer = (value: boolean) => {
     setOpenSidebar(value);
-  };
-
-  const handleChangeCategory = (value: string) => {
-    dispatch(setFilteredCategories(value));
-  };
-
-  const getFilteredProductsByCategory = (categories: string[]): Product[] => {
-    if (categories.length < 1) {
-      return products;
-    } else {
-      const filteredData = categories.flatMap((category) => {
-        return products.filter((product) => product.category === category);
-      });
-      return filteredData.sort((a, b) => a.title.localeCompare(b.title));
-    }
   };
 
   useEffect(() => {
@@ -68,9 +48,12 @@ const Main = () => {
   }, [products]);
 
   useEffect(() => {
-    dispatch(setFilteredProducts(getFilteredProductsByCategory(filteredCategories)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filteredCategories]);
+    setSlicedProducts(filteredProducts.slice(0, 6 * page));
+  }, [filteredProducts, page]);
+
+  const handleLoadMore = () => {
+    dispatch(setPage());
+  };
 
   return (
     <>
@@ -78,14 +61,22 @@ const Main = () => {
         <SearchField handleChange={handleChangeSearch} />
       </AppBar>
       <Container>
-        <Sidebar open={openSidebar} toggleOpenDrawer={toggleOpenDrawer}>
-          <CheckboxList
-            valuesArray={categories}
-            handleChange={handleChangeCategory}
-            checkedInputs={filteredCategories}
-          />
-        </Sidebar>
-        <ProductList products={filteredProducts} />
+        <Sidebar
+          open={openSidebar}
+          categories={categories}
+          toggleOpenDrawer={toggleOpenDrawer}
+        />
+        <MainList products={slicedProducts} />
+
+        <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
+          <Button
+            option="button"
+            onClick={handleLoadMore}
+            disabled={filteredProducts.length <= 6 * page}
+          >
+            Load more
+          </Button>
+        </Box>
       </Container>
     </>
   );

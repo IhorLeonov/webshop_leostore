@@ -1,35 +1,31 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Title, Container, NavLink, CartItemsList } from "../../components";
+import { Button, Title, Container, OrderList } from "../../components";
 import { Box, Text } from "./Cart.styled";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCart } from "../../redux/selectors";
+import { getTotalPrice } from "../../helpers/getTotalPrice";
 
 const Cart = () => {
   const { cart } = useAppSelector(selectCart);
   const navigate = useNavigate();
-
-  const totalPrice = cart.reduce((acc, item) => {
-    return acc + item.price * item.count;
-  }, 0);
-
   const location = useLocation();
+  const totalPrice = getTotalPrice(cart);
   const backLinkHref = location.state?.from ?? "/";
 
   return (
     <Container>
-      <NavLink to={backLinkHref} style={{ padding: 0, width: 100 }}>
-        <Button option="back" />
-      </NavLink>
-      <Title tag="h2" style={{ textAlign: "center" }}>
+      <Button option="back" path={backLinkHref} />
+      <Title tag="h2" style={{ textAlign: "center", marginTop: 10 }}>
         Shopping Cart
       </Title>
-      <CartItemsList />
+
+      <OrderList page="cart" />
       <Box>
-        <Text>Total price: {totalPrice.toFixed(2)} $</Text>
+        <Text>Total price: {totalPrice} $</Text>
         <Button
           color="success"
           option="button"
-          disabled={totalPrice === 0}
+          disabled={Number(totalPrice) === 0}
           onClick={() => navigate("/checkout")}
         >
           Make an order

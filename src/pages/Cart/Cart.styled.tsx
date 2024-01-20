@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 
 export const Text = styled.p`
   font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 export const Box = styled.div`

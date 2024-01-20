@@ -39,11 +39,12 @@ export interface MainSliceState {
   isLoading: boolean;
   error: string | null;
   message: string | null;
+  page: number;
+
   data: {
     product: Product | null;
     products: Product[];
     filteredProducts: Product[];
-    filteredCategories: string[];
     categories: string[];
   };
 }

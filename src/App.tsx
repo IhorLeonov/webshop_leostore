@@ -1,9 +1,10 @@
 import { lazy } from "react";
-import { Footer, Header } from "./components";
+import { Footer, Header, Layout, Loader } from "./components";
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "./components/Layout/Layout";
 import { Notifications } from "./components/Notifictions/Notifications";
-// import { RestrictedRoute } from "./helpers/RestrictedRoute";
+import { RestrictedRoute } from "./helpers/RestrictedRoute";
+import { useAppSelector } from "./redux/hooks";
+import { selectIsLoading } from "./redux/selectors";
 
 const MainPage = lazy(() => import("./pages/Main/Main"));
 const CartPage = lazy(() => import("./pages/Cart/Cart"));
@@ -11,6 +12,7 @@ const CheckoutPage = lazy(() => import("./pages/Checkout/Checkout"));
 const ProductPage = lazy(() => import("./pages/Product/Product"));
 
 const App = () => {
+  const isLoading = useAppSelector(selectIsLoading);
   return (
     <>
       <Header />
@@ -19,17 +21,17 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<MainPage />} />
             <Route path="cart" element={<CartPage />} />
-            {/* <Route
+            <Route
               path="checkout"
               element={<RestrictedRoute redirectTo="/" component={<CheckoutPage />} />}
-            /> */}
-            <Route path="checkout" element={<CheckoutPage />} />
+            />
             <Route path="product/:id" element={<ProductPage />} />
           </Route>
         </Routes>
       </main>
       <Footer />
       <Notifications />
+      {isLoading && <Loader />}
     </>
   );
 };

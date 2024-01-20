@@ -8,6 +8,6 @@ export const schema = Yup.object().shape({
     .min(2, "Name must be longer")
     .max(60, "Name must be shorter")
     .required(required),
-  email: Yup.string().email("Is not valid email").required(required),
-  phone: Yup.string().matches(regex, "Is not valid phone number").required(required),
+  email: Yup.string().email("Invalid email").required(required),
+  phone: Yup.string().matches(regex, "Invalid phone number").required(required),
 });

@@ -14,8 +14,10 @@ export const sendEmailToManager = (cart: CartItem[], values: FormValues) => {
       {
         from_email: values.email,
         message: `Name: ${values.name} \n Phone: ${values.phone} \n Titles: ${cart
-          .map((item) => item.title)
-          .join(",")} \n Ids: ${cart.map((item) => item.id).join(",")}`,
+          .map((item) => `${item.title} (${item.count}pcs)`)
+          .join(",")} \n Ids: ${cart
+          .map((item) => `${item.id}(${item.count}pcs)`)
+          .join(",")}`,
       },
       USER_ID
     )
@@ -37,7 +39,7 @@ export const sendEmailToClient = (cart: CartItem[], values: FormValues) => {
       {
         to_email: values.email,
         to_name: values.name,
-        message: cart.map((item) => item.title).join(","),
+        message: cart.map((item) => `${item.title} (${item.count}pcs) \n`).join(","),
       },
       USER_ID
     )

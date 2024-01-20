@@ -22,9 +22,12 @@ export const Card = styled.div`
 `;
 
 export const Image = styled.img`
+  width: 220px;
   height: 220px;
   margin-left: auto;
   margin-right: auto;
+
+  object-fit: contain;
 `;
 
 export const Category = styled.p`

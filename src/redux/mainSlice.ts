@@ -1,5 +1,10 @@
 import { isAnyOf, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getAllProducts, getAllCategories, getSingleProduct } from "./operations";
+import {
+  getAllProducts,
+  getAllCategories,
+  getSingleProduct,
+  getProductsInCategory,
+} from "./operations";
 import { MainSliceState, Product } from "../types/interfaces";
 
 const handleSameFulfilled = (state: MainSliceState) => {
@@ -11,12 +16,12 @@ const initialState = {
   isLoading: false,
   error: null,
   message: null,
+  page: 1,
   data: {
     product: null,
     products: [],
     categories: [],
     filteredProducts: [],
-    filteredCategories: [],
   },
 } as MainSliceState;
 
@@ -27,26 +32,17 @@ const mainSlice = createSlice({
     setFilteredProducts: (state, action: PayloadAction<Product[]>) => {
       state.data.filteredProducts = action.payload;
     },
-    setFilteredCategories: (state, action: PayloadAction<string>) => {
-      const category = action.payload;
-      const filters = state.data.filteredCategories;
-      const newFilters = filters.filter((item) => item !== category);
-
-      if (filters.includes(category)) {
-        state.data.filteredCategories = newFilters;
-      } else {
-        state.data.filteredCategories.push(category);
-      }
-    },
-    resetCategories: (state) => {
-      state.data.filteredCategories = [];
-    },
     setMessage: (state, action) => {
       state.message = action.payload;
     },
     resetNotification: (state, action: PayloadAction<"error" | "message">) => {
       if (action.payload === "error") state.error = null;
       if (action.payload === "message") state.message = null;
+    },
+    setPage: (state, action: PayloadAction<number | undefined>) => {
+      if (action.payload) {
+        state.page = action.payload;
+      } else state.page = state.page + 1;
     },
   },
   extraReducers: (builder) => {
@@ -63,11 +59,16 @@ const mainSlice = createSlice({
         handleSameFulfilled(state);
         state.data.product = action.payload;
       })
+      .addCase(getProductsInCategory.fulfilled, (state, action) => {
+        handleSameFulfilled(state);
+        state.data.products = action.payload;
+      })
       .addMatcher(
         isAnyOf(
           getAllProducts.pending,
           getAllCategories.pending,
-          getSingleProduct.pending
+          getSingleProduct.pending,
+          getProductsInCategory.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -77,7 +78,8 @@ const mainSlice = createSlice({
         isAnyOf(
           getAllProducts.rejected,
           getAllCategories.rejected,
-          getSingleProduct.rejected
+          getSingleProduct.rejected,
+          getProductsInCategory.rejected
         ),
         (state, action) => {
           state.isLoading = false;
@@ -87,11 +89,6 @@ const mainSlice = createSlice({
   },
 });
 
-export const {
-  setFilteredProducts,
-  setFilteredCategories,
-  resetCategories,
-  setMessage,
-  resetNotification,
-} = mainSlice.actions;
+export const { setFilteredProducts, setMessage, resetNotification, setPage } =
+  mainSlice.actions;
 export const mainReducer = mainSlice.reducer;

@@ -9,7 +9,7 @@ interface SearchAppBarProps {
 
 export function AppBar({ toggleOpenDrawer, children }: SearchAppBarProps) {
   return (
-    <MuiAppBar position="static" color="success" sx={{ backgroundColor: "#2c7873" }}>
+    <MuiAppBar position="static" sx={{ backgroundColor: "#204ffe" }}>
       <StyledToolbar>
         <IconButton
           size="large"
