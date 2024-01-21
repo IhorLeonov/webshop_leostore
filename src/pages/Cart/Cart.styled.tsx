@@ -15,3 +15,19 @@ export const Box = styled.div`
   margin-left: auto;
   margin-right: auto;
 `;
+
+export const EmptyCart = styled.div`
+  min-height: calc(100vh - 136px);
+
+  @media (min-width: 600px) {
+    min-height: calc(100vh - 200px);
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EmptyText = styled.p`
+  font-size: 32px;
+`;

@@ -6,7 +6,7 @@ export interface Theme {
     lightBlack: string;
     lightGray: string;
     gray: string;
-    red: string;
+    pink: string;
     hover: string;
     accent: string;
   };
@@ -40,6 +40,7 @@ export interface MainSliceState {
   error: string | null;
   message: string | null;
   page: number;
+  notFound: boolean;
 
   data: {
     product: Product | null;

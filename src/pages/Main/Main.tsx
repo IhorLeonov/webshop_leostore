@@ -8,15 +8,24 @@ import {
   Container,
   Button,
 } from "../../components/index";
-import { setFilteredProducts, setPage } from "../../redux/mainSlice";
+import { setFilteredProducts, setNotFound, setPage } from "../../redux/mainSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAllCategories, getAllProducts } from "../../redux/operations";
-import { selectData, selectPage } from "../../redux/selectors";
+import {
+  selectData,
+  selectIsLoading,
+  selectNotFound,
+  selectPage,
+} from "../../redux/selectors";
 import { Box } from "@mui/material";
+import NotFound from "../../components/NotFound/NotFound";
 
 const Main = () => {
   const dispatch = useAppDispatch();
   const page = useAppSelector(selectPage);
+  const isLoading = useAppSelector(selectIsLoading);
+  const nothingFound = useAppSelector(selectNotFound);
+
   const { products, categories, filteredProducts } = useAppSelector(selectData);
 
   const [openSidebar, setOpenSidebar] = useState<boolean>(false);
@@ -25,10 +34,15 @@ const Main = () => {
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTimeout(() => {
       const value = e.target.value.trim();
-      const filteredProducts = products.filter((item: Product) =>
+      const filteredArr = products.filter((item: Product) =>
         item.title.toLowerCase().includes(value.toLowerCase())
       );
-      dispatch(setFilteredProducts(filteredProducts));
+      if (filteredArr.length < 1) {
+        dispatch(setNotFound(true));
+      } else {
+        dispatch(setNotFound(false));
+      }
+      dispatch(setFilteredProducts(filteredArr));
     }, 700);
   };
 
@@ -66,17 +80,15 @@ const Main = () => {
           categories={categories}
           toggleOpenDrawer={toggleOpenDrawer}
         />
-        <MainList products={slicedProducts} />
+        {nothingFound ? <NotFound /> : <MainList products={slicedProducts} />}
 
-        <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
-          <Button
-            option="button"
-            onClick={handleLoadMore}
-            disabled={filteredProducts.length <= 6 * page}
-          >
-            Load more
-          </Button>
-        </Box>
+        {!isLoading && filteredProducts.length > 6 * page && !nothingFound && (
+          <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
+            <Button option="button" onClick={handleLoadMore}>
+              Load more
+            </Button>
+          </Box>
+        )}
       </Container>
     </>
   );

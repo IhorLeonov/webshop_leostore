@@ -50,7 +50,7 @@ export const ErrorText = styled.p`
   margin-left: 10px;
   height: 14px;
 
-  color: ${({ theme }) => theme.colors.red};
+  color: ${({ theme }) => theme.colors.pink};
   font-size: 12px;
   line-height: 14px;
 `;

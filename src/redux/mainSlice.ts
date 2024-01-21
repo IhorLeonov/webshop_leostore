@@ -14,6 +14,7 @@ const handleSameFulfilled = (state: MainSliceState) => {
 
 const initialState = {
   isLoading: false,
+  notFound: false,
   error: null,
   message: null,
   page: 1,
@@ -43,6 +44,9 @@ const mainSlice = createSlice({
       if (action.payload) {
         state.page = action.payload;
       } else state.page = state.page + 1;
+    },
+    setNotFound: (state, action: PayloadAction<boolean>) => {
+      state.notFound = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -89,6 +93,11 @@ const mainSlice = createSlice({
   },
 });
 
-export const { setFilteredProducts, setMessage, resetNotification, setPage } =
-  mainSlice.actions;
+export const {
+  setFilteredProducts,
+  setMessage,
+  resetNotification,
+  setPage,
+  setNotFound,
+} = mainSlice.actions;
 export const mainReducer = mainSlice.reducer;

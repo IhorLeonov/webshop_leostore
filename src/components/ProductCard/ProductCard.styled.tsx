@@ -22,7 +22,7 @@ export const Card = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 220px;
+  width: 200px;
   height: 220px;
   margin-left: auto;
   margin-right: auto;

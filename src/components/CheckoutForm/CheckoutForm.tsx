@@ -48,7 +48,9 @@ export const CheckoutForm = ({ cart }: CheckoutFormProps) => {
               name="name"
               type="text"
               placeholder="Your name"
-              style={{ borderColor: touched.name && errors.name ? theme.colors.red : "" }}
+              style={{
+                borderColor: touched.name && errors.name ? theme.colors.pink : "",
+              }}
             />
             <ErrorText>{errors.name && touched.name ? errors.name : ""}</ErrorText>
           </label>
@@ -59,7 +61,7 @@ export const CheckoutForm = ({ cart }: CheckoutFormProps) => {
               type="email"
               placeholder="Email"
               style={{
-                borderColor: touched.email && errors.email ? theme.colors.red : "",
+                borderColor: touched.email && errors.email ? theme.colors.pink : "",
               }}
             />
             <ErrorText>{errors.email && touched.email ? errors.email : ""}</ErrorText>
@@ -71,7 +73,7 @@ export const CheckoutForm = ({ cart }: CheckoutFormProps) => {
               type="phone"
               placeholder="Phone"
               style={{
-                borderColor: touched.phone && errors.phone ? theme.colors.red : "",
+                borderColor: touched.phone && errors.phone ? theme.colors.pink : "",
               }}
             />
             <ErrorText>{errors.phone && touched.phone ? errors.phone : ""}</ErrorText>
