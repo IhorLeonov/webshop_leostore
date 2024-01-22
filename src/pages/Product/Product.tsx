@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getProductsInCategory, getSingleProduct } from "../../redux/operations";
 import { selectData } from "../../redux/selectors";
-import { Button, Title, Container } from "../../components";
+import { Button } from "../../components";
 import { addToCart } from "../../redux/cartSlice";
 import {
   Card,
@@ -15,6 +15,7 @@ import {
   Caption,
 } from "./Product.styled";
 import { setMessage } from "../../redux/mainSlice";
+import { Title, Container } from "../../UI";
 
 const Product = () => {
   const { id } = useParams();
@@ -49,7 +50,7 @@ const Product = () => {
       <Button option="back" path={backLinkHref} />
 
       <Card>
-        <Image src={product?.image} alt={product?.title} loading="lazy" />
+        <Image src={product?.image} alt="item photo" loading="lazy" />
         <ProductDesc>
           <Title tag="h2">{product?.title}</Title>
           <Category onClick={() => handleCategoryClick(product?.category)}>

@@ -1,10 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Title, Container, OrderList } from "../../components";
+import { Button, OrderList } from "../../components";
 import { Box, Text, EmptyCart, EmptyText } from "./Cart.styled";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCart } from "../../redux/selectors";
 import { getTotalPrice } from "../../helpers/getTotalPrice";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import { Container, Title } from "../../UI";
 
 const Cart = () => {
   const { cart } = useAppSelector(selectCart);

@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router";
-import { Title, Container, CheckoutForm, OrderList, Button } from "../../components";
+import { CheckoutForm, OrderList, Button } from "../../components";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCart } from "../../redux/selectors";
 import { Text, Box } from "./Checkout.styled";
 import { getTotalPrice } from "../../helpers/getTotalPrice";
+import { Container, Title } from "../../UI";
 
 const Checkout = () => {
   const { cart } = useAppSelector(selectCart);

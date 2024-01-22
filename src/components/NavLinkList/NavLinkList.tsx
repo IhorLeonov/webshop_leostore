@@ -1,9 +1,9 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { NavLink } from "../index";
 import { LinkList, IconWrapper } from "./NavLinkList.styled";
 import { HiShoppingBag } from "react-icons/hi";
 import { HiHome } from "react-icons/hi";
 import { useLocation } from "react-router";
+import { NavLink } from "../../UI";
 
 interface NavLinkListProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {}
@@ -15,14 +15,14 @@ export const NavLinkList = ({ ...props }: NavLinkListProps) => {
     <nav>
       <LinkList {...props}>
         <li>
-          <NavLink to="/">
+          <NavLink to="/" aria-label="to home">
             <IconWrapper>
               <HiHome />
             </IconWrapper>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/cart" state={{ from: location }}>
+          <NavLink to="/cart" aria-label="to cart" state={{ from: location }}>
             <IconWrapper>
               <HiShoppingBag />
             </IconWrapper>

@@ -40,8 +40,12 @@ export const OrderList = ({ page }: OrderListProps) => {
       {cart.map(({ id, title, price, image, count }) => {
         return (
           <ListItem key={id}>
-            <Link to={`/product/${id}`} state={{ from: location }}>
-              <Image src={image} alt={title} />
+            <Link
+              to={`/product/${id}`}
+              aria-label="to product"
+              state={{ from: location }}
+            >
+              <Image src={image} alt="item photo" />
             </Link>
 
             <ItemInfo>

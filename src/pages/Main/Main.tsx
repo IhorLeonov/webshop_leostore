@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import { Product } from "../../types/interfaces";
-import {
-  MainList,
-  AppBar,
-  Sidebar,
-  SearchField,
-  Container,
-  Button,
-} from "../../components/index";
+import { MainList, AppBar, Sidebar, SearchField, Button } from "../../components/index";
 import { setFilteredProducts, setNotFound, setPage } from "../../redux/mainSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getAllCategories, getAllProducts } from "../../redux/operations";
@@ -19,6 +12,7 @@ import {
 } from "../../redux/selectors";
 import { Box } from "@mui/material";
 import NotFound from "../../components/NotFound/NotFound";
+import { Container } from "../../UI";
 
 const Main = () => {
   const dispatch = useAppDispatch();

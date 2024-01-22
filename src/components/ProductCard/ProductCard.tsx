@@ -1,4 +1,4 @@
-import { Button, Title } from "../index";
+import { Button } from "../index";
 import { Product } from "../../types/interfaces";
 import { Card, Image, Category } from "./ProductCard.styled";
 import { Link, useLocation } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { addToCart } from "../../redux/cartSlice";
 import { setMessage, setPage } from "../../redux/mainSlice";
 import { getProductsInCategory } from "../../redux/operations";
+import { Title } from "../../UI";
 
 interface ProductCardProps {
   product: Product;
@@ -33,9 +34,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Card>
-      <Link to={`/product/${id}`} state={{ from: location }}>
-        <Image src={image} alt={title} loading="lazy" />
-        <Title tag="h3">{title}</Title>
+      <Link to={`/product/${id}`} aria-label="to product" state={{ from: location }}>
+        <Image src={image} alt="item photo" loading="lazy" />
+        <Title tag="h2">{title}</Title>
       </Link>
       <Category onClick={handleCategoryClick}>{category}</Category>
       <p>{price.toFixed(2)} $</p>

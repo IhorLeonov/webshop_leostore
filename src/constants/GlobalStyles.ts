@@ -17,6 +17,7 @@ export const GlobalStyles = css`
 
     font-family: "Kanit Regular";
     font-weight: 400;
+    font-display: swap;
   }
 
   @font-face {
@@ -24,6 +25,7 @@ export const GlobalStyles = css`
 
     font-family: "Kanit Medium";
     font-weight: 500;
+    font-display: swap;
   }
 
   *,

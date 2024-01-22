@@ -9,7 +9,7 @@ export const Card = styled.div`
   background-color: #fff;
   overflow: hidden;
 
-  h3 {
+  h2 {
     margin-top: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
