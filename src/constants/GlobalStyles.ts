@@ -13,7 +13,7 @@ export const GlobalStyles = css`
   }
 
   @font-face {
-    src: url("src/assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
+    src: url("../assets/fonts/Kanit/Kanit-Regular.ttf") format("truetype");
 
     font-family: "Kanit Regular";
     font-weight: 400;
@@ -21,7 +21,7 @@ export const GlobalStyles = css`
   }
 
   @font-face {
-    src: url("src/assets/fonts/Kanit/Kanit-Medium.ttf") format("truetype");
+    src: url("../assets/fonts/Kanit/Kanit-Medium.ttf") format("truetype");
 
     font-family: "Kanit Medium";
     font-weight: 500;
